@@ -68,8 +68,8 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
 ## Notes
 
 **Something needs to be noticed in order to successfully run this lab:**
-- Task 3: If step 1 (Create zones) did not work with you, you could add the zone entries to /etc/bind/**named.conf.local** file insted of /etc/bind/**named.conf** file.
-- Task 5: If the attack is successful at first, it is probably that the request you sent using netwox does not arrive at the user's machine before the local DNS server's packet. You can try to use dig to send more requests on the user machine while running netwox.
+- Task 3: If step 1 (create zones) did not work with you, you may add the zone entries to /etc/bind/**named.conf.local** file insted of /etc/bind/**named.conf** file.
+- Task 5: If the attack is not successful at first, it is probably that the request you sent using netwox does not arrive at the user's machine before the local DNS server's packet. You can try to use dig to send more requests on the user machine while running netwox.
 - Task 6: We use Netwox 105 to spoof the response to DNS server. The filter field setting in the instruction is incorrect. It should be set to "src host [your local DNS server IP]". 
 - Task 7: To improve the attack success rate, you can modify the final line of the program to only respond to packets from the server: pkt = sniff(filter='udp and dst port 53 and src <your DNS server's address>', prn=spoof_dns).
 - Task 8 & 9: If you don't attack successfully, maybe you need to flush the cache and retry the DNS request multiple times.
