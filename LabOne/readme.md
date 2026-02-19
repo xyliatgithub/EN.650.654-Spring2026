@@ -6,9 +6,11 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
 
 ## Instructions for Intel/AMD Machines x86-64
 
-1. **Download the Pre-built VM Image**  
-   - Visit [SEED Labs Setup](https://seedsecuritylabs.org/labsetup.html) to download the pre-built VM image (Ubuntu 16.04, 32-bit).
-   - <img width="600" alt="image" src="https://github.com/user-attachments/assets/f603b6bf-57bd-4042-8798-1cfa72f5336b" />
+1. **Download the Pre-built VM Image**
+> <details>
+> <summary>Visit <a href="https://seedsecuritylabs.org/labsetup.html">SEED Labs Setup</a> to download the pre-built VM image (Ubuntu 16.04, 32-bit).</summary>
+> <img width="600" alt="image" src="https://github.com/user-attachments/assets/f603b6bf-57bd-4042-8798-1cfa72f5336b" />
+> </details>
 
 
 
@@ -18,7 +20,8 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
    - This manual also contains account information, such as usernames and passwords.
   
 > [!NOTE]
-> If you encounter the following error while launching VM in VirtualBox:
+> <details>
+>  <summary> If you encounter "memory could not be read" error in VirtualBox:</summary>
 >
 > <img width="400" alt="image" src="https://github.com/user-attachments/assets/872a9ced-87bd-4b3f-bfc3-91d65a090acd" />
 >
@@ -27,6 +30,7 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
 > <img width="400" alt="image" src="https://github.com/user-attachments/assets/b68749c3-c46d-4928-9388-525ca1043f48" />
 >
 > If issue persists convert VirtualBox VM to VMware VM. For details on converting, refer to to this [manual](https://knowledge.broadcom.com/external/article/341189/importing-virtual-machine-from-oracle-vi.html). 
+></details>
 
 
   
@@ -37,10 +41,15 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
    - Download and install [VMWare Fusion Pro 25H2](https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Fusion&displayGroup=VMware%20Fusion%2025H2&release=25H2&os=&servicePk=&language=EN&freeDownloads=true).
      > Refer to to SEED Lab [Setup instructions](https://github.com/seed-labs/seed-labs/blob/master/lab-setup/apple-arm/seedvm-v2/SeedVM-Fusion_Installation.md) for more details.
 
-2. **Download the Ubuntu 22.04 Image**  
-   - Download the [Ubuntu 22.04.5 LTS](https://cdimage.ubuntu.com/ubuntu/releases/22.04/release/). Make sure you download the 64-bit ARM (ARMv8/AArch64) server install image.
-   - <img width="600" alt="image" src="https://github.com/user-attachments/assets/366896d5-56e0-4109-bd17-14bbe3bd39de" />
+2. **Download the Ubuntu 22.04 Image**
+   > <details>
+   > <summary> Download the [Ubuntu 22.04.5 LTS](https://cdimage.ubuntu.com/ubuntu/releases/22.04/release/). 
+   >
+   > Make sure you download the 64-bit ARM (ARMv8/AArch64) server install image.</summary>
+   > <img width="600" alt="image" src="https://github.com/user-attachments/assets/366896d5-56e0-4109-bd17-14bbe3bd39de" />
+   > </details>
 
+   
    - Follow the instructions in the [SEED Labs VM Setup](https://github.com/seed-labs/seed-labs/blob/master/lab-setup/apple-arm/seedvm-v2/SeedVM-Ubuntu_Installation.md).  
      - **Please note that there may be some differences on Ubuntu 22.04 compared to Ubuntu 16.04 using VirtualBox**.
        
@@ -57,7 +66,7 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
    - Ensure these VMs are configured in **promiscuous mode** to listen to network traffic from other VMs.  
    - After configuring one VM, you can simply clone it **two additional times** to complete the setup.  
 
-2. Please follow the instructions in the DNS_Local PDF file to complete all the 9 tasks. The first three tasks are basically the environment and DNS setup.
+2. Please follow the instructions in the [DNS_Local](DNS_Local.pdf) PDF file to complete all the 9 tasks. The first three tasks are basically the environment and DNS setup.
 > [!IMPORTANT]
 > You will not be able to complete all the tasks without proper setup. If you encounter any problem, please reach out to the CA for help ASAP. 
 
@@ -68,10 +77,13 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
 ## Notes
 
 **Something needs to be noticed in order to successfully run this lab:**
-- Task 3: If step 1 (create zones) did not work with you, you may add the zone entries to /etc/bind/**named.conf.local** file insted of /etc/bind/**named.conf** file.
+- Task 3: If step 1 (create zones) did not work with you, you may add the zone entries to `/etc/bind/named.conf.local` file insted of `/etc/bind/named.conf` file.
 - Task 5: If the attack is not successful at first, it is probably that the request you sent using netwox does not arrive at the user's machine before the local DNS server's packet. You can try to use dig to send more requests on the user machine while running netwox.
-- Task 6: We use Netwox 105 to spoof the response to DNS server. The filter field setting in the instruction is incorrect. It should be set to "src host [your local DNS server IP]". 
-- Task 7: To improve the attack success rate, you can modify the final line of the program to only respond to packets from the server: pkt = sniff(filter='udp and dst port 53 and src <your DNS server's address>', prn=spoof_dns).
+- Task 6: We use Netwox 105 to spoof the response to DNS server. The filter field setting in the instruction is incorrect. It should be set to `src host [your local DNS server IP]`. 
+- Task 7: To improve the attack success rate, you can modify the final line of the program to only respond to packets from the server:
+```bash
+ pkt = sniff(filter='udp and dst port 53 and src <your DNS server's address>', prn=spoof_dns)
+ ```
 - Task 8 & 9: If you don't attack successfully, maybe you need to flush the cache and retry the DNS request multiple times.
 
 ## Required Files for DNS Setup
