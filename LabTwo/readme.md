@@ -62,8 +62,10 @@ In this lab, you need to have three VMs under the same local network. Once you h
 > [!NOTE]
 > <details>
 > <summary> What is standart deviation?</summary>
+> <p align="center">
 > <img width="350" alt="image" src="https://github.com/user-attachments/assets/3909dac3-730d-4c9b-861e-726a5ba503a7" />
->   
+> </p>  
+>
 > The **standard deviation** is a measure of the amount of variation of the values of a variable about its average. A low standard deviation indicates that the values tend to be close to their average of the set, while a high standard deviation indicates that the values are spread out over a wider range.
 >   
 > Use the formula below to calculate the standart deviation for your data sets.
