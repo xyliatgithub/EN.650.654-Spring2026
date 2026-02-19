@@ -53,12 +53,35 @@ In this lab, you need to have three VMs under the same local network. Once you h
 **Questions:** Do you see at which time you started the flooding attack? Why is it very distinctive? Did the attack end at some point? What do you think happened at this point?
 
 - Repeat the above steps at least four more times for the task below. You need to change the name of the data file everytime, e.g., *capture1.pcap*, *capture2.pcap*, ....
-> You do not need to show the `I/O graph` for the repeated experiements.
-- Use Wireshark to take the statistics of average packet size and bandwidth of the normal traffic and the traffic during the attack respectively from each *pcap* file and put these in an Excel spreadsheet. You should have two tables. One table has avearge packet size and bandwidth values for normal traffic and the other table for the traffic during the attack.
+> You do not need to show the I/O graph for the repeated experiements.
+- Use Wireshark to calculate the average packet size and the average traffic rate (in bits per second or bytes per second) for both normal and attack traffic. Record these values in an Excel spreadsheet. Your spreadsheet should include two separate tables: one showing the average packet size and average traffic rate for normal traffic, and the other showing the same measurements for traffic captured during an attack.
 > Look at the `Statistics > I/O` graph and locate a point where the attack started, and then use `Statistics > Packet Lengths` with filters to display the packets received before or after that point. Check the statistics of the displayed packets.
  
 ### 4. Statistical Analysis
 - Calculate the average and standard deviation of these two sets of data. Describe your observations of the results. Include the spreadsheet, average, and standard deviation in your report.
+> [!NOTE]
+> <details>
+> <summary> What is standart deviation?</summary>
+> <img width="350" alt="image" src="https://github.com/user-attachments/assets/3909dac3-730d-4c9b-861e-726a5ba503a7" />
+>   
+> The **standard deviation** is a measure of the amount of variation of the values of a variable about its average. A low standard deviation indicates that the values tend to be close to their average of the set, while a high standard deviation indicates that the values are spread out over a wider range.
+>   
+> Use the formula below to calculate the standart deviation for your data sets.
+> 
+> $$
+> s = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(x_i - \bar{x})^2}
+> $$
+>
+> Where:
+>
+> - **s** = sample standard deviation  
+> - **n** = number of values  
+> - **xᵢ** = each value  
+> - **x̄** = sample mean  
+>
+> 
+> </details>
+
 
 ## Grading (50 points)
 Please take screenshots periodically and regularly and include them in your report. They not only serve as evidence of completion but also help the grader understand what you try to achieve. Add adeuqate explaination as needed. See the lab submission example for what it should look like.
