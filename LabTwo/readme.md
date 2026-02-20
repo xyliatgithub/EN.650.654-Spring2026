@@ -15,7 +15,7 @@ In this lab, you need to have three VMs under the same local network. Once you h
 
 ## Lab Instructions 
 
-1. Please follow the instructions on [this page](https://seedsecuritylabs.org/Labs_16.04/PDF/TCP_Attacks.pdf) to complete **Task 1: SYN Flooding Attack**. 
+1. Please follow the instructions on this [lab manual](https://seedsecuritylabs.org/Labs_16.04/PDF/TCP_Attacks.pdf) to complete **Task 1: SYN Flooding Attack**. 
 2. Then you need to complete some additional tasks. See the sections below for specific instructions.
 
 ## Additional Tasks
