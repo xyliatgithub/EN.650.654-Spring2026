@@ -1,6 +1,6 @@
 # Lab 2 - Network Traffic & DoS Attack
 
-In this lab, we will perform an experimental Denial-of-Service attack and collect network packets. In addition to those tasks required by the SEED lab documentation, you need to finish the additional tasks described below.
+In this lab, we will perform an experimental Denial-of-Service attack and collect network packets. In addition to those tasks required by the SEED lab documentation, you need to finish several additional tasks described below.
 
 ## Setup
 > [!NOTE]
