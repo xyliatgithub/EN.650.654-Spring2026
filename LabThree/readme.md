@@ -1,6 +1,6 @@
 # Lab 3 - Snort
 
-In this lab assignment, you will get familiar with the network intrusion detection system of Snort. 
+In this lab assignment, you will practice the network intrusion detection system of Snort. 
 
 The goals of this lab include:
 1.	To get you acquainted with Intrusion Detection Systems (IDSs)
