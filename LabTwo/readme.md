@@ -54,7 +54,7 @@ In this lab, you need to have three VMs under the same local network. Once you h
 
 - Repeat the above steps at least four more times for the task below. You need to change the name of the data file everytime, e.g., *capture1.pcap*, *capture2.pcap*, ....
 > You do not need to show the I/O graph for the repeated experiements.
-- Use Wireshark to calculate the average packet size and the average traffic rate (in bits per second or bytes per second) for both normal and attack traffic. Record these values in an Excel spreadsheet. Your spreadsheet should include two separate tables: one showing the average packet size and average traffic rate for normal traffic, and the other showing the same measurements for traffic captured during an attack.
+- Use Wireshark to calculate the average packet size and the average traffic rate (in pakets per second) for both normal and attack traffic. Record these values in an Excel spreadsheet. Your spreadsheet should include two separate tables: one showing the average packet size and average traffic rate for normal traffic, and the other showing the same measurements for traffic captured during an attack.
 > Look at the `Statistics > I/O` graph and locate a point where the attack started, and then use `Statistics > Packet Lengths` with filters to display the packets received before or after that point. Check the statistics of the displayed packets.
  
 ### 4. Statistical Analysis of Normal and Attack Traffic
