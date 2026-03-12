@@ -27,9 +27,10 @@ In this lab, you need to have three VMs under the same local network. Once you h
   ```
 - We will now collect data of normal traffic and DoS traffic and compare them. First, go to a terminal that corresponds to the "Server" machine type:
   ```bash
-  sudo tcpdump -i eth1 -s0 -w capture1.pcap
+  sudo tcpdump -i eth1 -Q in -s0 -w capture1.pcap
   ```
-  replace *eth1* with the correct network interface on your machine. To find the right one, run `ifconfig` and look for the IP address, the interface name will be listed before it. Use that interface name in the command and hit Enter on your keyboard. This command captures the packet traffic and writes it in a file called *capture1.pcap*.
+  replace *eth1* with the correct network interface on your machine. To find the right one, run `ifconfig` and look for the IP address, the interface name will be listed before it. Use that interface name in the command and hit Enter on your keyboard.
+  This command captures the incoming packet traffic and writes it in a file called *capture1.pcap*.
 - Open another terminal on the "Server" machine and press Ctrl+C key. Now in this terminal, Type:
   ```bash
   iperf -s
