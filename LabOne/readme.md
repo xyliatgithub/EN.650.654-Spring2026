@@ -8,7 +8,7 @@ In this lab assignment, you will need to setup multiple SEED lab VMs and perform
 
 1. **Download the Pre-built VM Image**
 > <details>
-> <summary>Visit <a href="https://seedsecuritylabs.org/labsetup.html">SEED Labs Setup</a> to download the pre-built VM image (Ubuntu 16.04, 32-bit).</summary>
+> <summary>Visit <a href="https://seedsecuritylabs.org/lab_env.html">SEED Labs Setup</a> to download the pre-built VM image (Ubuntu 16.04, 32-bit).</summary>
 > <img width="600" alt="image" src="https://github.com/user-attachments/assets/f603b6bf-57bd-4042-8798-1cfa72f5336b" />
 > </details>
 
