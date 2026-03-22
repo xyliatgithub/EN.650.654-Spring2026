@@ -10,14 +10,20 @@ The goals of this lab include:
 
 
 ## Setup
+> [!NOTE]
+> Please reuse the VM/environment from Lab 1. If you already finished Lab 1 setup, you can skip this setup section. Otherwise, follow: [Lab 1 – Environment Setup](../LabOne/readme.md#setup).
+- Download and install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- Refer to the [SEED VM VirtualBox Manual](https://seedsecuritylabs.org/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf) for detailed instructions on setting up the VM in VirtualBox.
+- This manual also contains account information, such as usernames and passwords.
 
-- Go to [SEED lab setup page](https://seedsecuritylabs.org/lab_env.html) to install the pre-built VM image (**Ubuntu 16.04** 32 bits).
-- VM setup instruction (in Virtualbox): this manual also contains account information (usernames and passowrds) https://seedsecuritylabs.org/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf
+In this lab, you need to have three VMs under the same local network. Once you have configured a VM, you can simply clone that VM for two more times to complete the VM setup. Please refer to Appendix A and B of the VM setup instruction.
+> [!IMPORTANT]
+> Note that these three VMs should be in the promiscuous mode in order to listen to traffics from other VMs.
 
 In this lab, you need to have three VMs under the same local network. Note that these three VMs should be in the promiscuous mode in order to listen to traffics from other VMs. Once you have configured a VM, you can simply clone that VM for two more times to complete the VM setup. Please refer to Appendix A and B of the VM setup instruction.
 
 ## Lab Instructions  
-Please follow the [lab instructions](https://github.com/xyliatgithub/EN.650.654-Spring2026/blob/main/LabThree/Lab%203%20Manual.pdf) and complete all the tasks. 
+Please follow the [lab instructions](Lab%203%20Manual.pdf) and complete all the tasks. 
 
 ## Grading (50 points)
 Please take screenshots periodically and regularly and include them in your report. They not only serve as evidence of completion but also help the grader understand what you try to achieve. Add adeuqate explaination as needed. See the lab submission example for what it should look like.
