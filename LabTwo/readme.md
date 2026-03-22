@@ -4,7 +4,7 @@ In this lab, we will perform an experimental Denial-of-Service attack and collec
 
 ## Setup
 > [!NOTE]
-   > Please reuse the VM/environment from Lab 1. If you already finished Lab 1 setup, you can skip this setup section. Otherwise, follow: [Lab 1 – Environment Setup](https://github.com/xyliatgithub/EN.650.654-Spring2026/edit/main/LabOne/readme.md#setup).
+   > Please reuse the VM/environment from Lab 1. If you already finished Lab 1 setup, you can skip this setup section. Otherwise, follow: [Lab 1 – Environment Setup](../LabOne/readme.md#setup).
 - Visit [SEED Labs Setup](https://seedsecuritylabs.org/labsetup.html) to download the pre-built VM image (Ubuntu 16.04, 32-bit).
 - VM setup instruction (in Virtualbox): this manual also contains account information (usernames and passwords) https://seedsecuritylabs.org/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf
 
@@ -40,10 +40,12 @@ In this lab, you need to have three VMs under the same local network. Once you h
   ```bash
   iperf -c Server_IP
   ```
-  and hit Enter on your keyboard. You need to use the real IP address of the "Server" machine in this command. Wait for at least 5 seconds and do the next step.
+  and hit Enter on your keyboard. You need to use the real IP address of the "Server" machine in this command.
+- Wait for at least 5 seconds and do the next step without interrupting running commands.
 
 ### 2. SYN Flooding DoS Attack Traffic Generation
-- Open the terminal on the "Attacker" machine. Conduct the same SYN flood attack from the [task 1](https://seedsecuritylabs.org/Labs_16.04/PDF/TCP_Attacks.pdf) of this SEED lab. After 10 seconds, press Ctrl+C and stop all the tasks running on terminal windows of three VMs.
+- Open the terminal on the "Attacker" machine. Conduct the same SYN flood attack from the [task 1](TCP_Attacks.pdf) of this SEED lab.
+- After 10 seconds, press Ctrl+C and stop all the commands running on terminal windows of three VMs.
 
 ### 3. Traffic Analysis Using Wireshark
 - Use Wireshark to view the *capture1.pcap* file. This file contains both normal and attack traffic data.
@@ -53,9 +55,14 @@ In this lab, you need to have three VMs under the same local network. Once you h
 
 **Questions:** Do you see at which time you started the flooding attack? Why is it very distinctive? Did the attack end at some point? What do you think happened at this point?
 
-- Repeat the above steps at least four more times for the task below. You need to change the name of the data file everytime, e.g., *capture1.pcap*, *capture2.pcap*, ....
+- Run your attacks and capture I/O graph with the SYN cookie mechanism on and off. Include the graph for these in your report.
+  
+**Questions:** Do you see difference in graphs while attack was run with SYN cookies on? Is it different from the graph when attack was run with SYN cookies off? Why is there difference or why not? Describe your graphs, compare, explain the results.
+
+- Repeat the above steps at least four more times each for the task below. You need to change the name of the data file everytime, e.g., *capture1.pcap*, *capture2.pcap*, ....
 > You do not need to show the I/O graph for the repeated experiements.
-- Use Wireshark to calculate the average packet size and the average traffic rate (measured in packets per second) for both normal and attack traffic. Record these values in an Excel spreadsheet. Your spreadsheet should include two separate tables: one showing the average packet size and average traffic rate for normal traffic, and the other showing the same measurements for traffic captured during an attack.
+- Use Wireshark to calculate the average packet size and the average traffic rate (measured in packets per second) for both normal and attack traffic with SYN cookies turned on and off. Record these values in an Excel spreadsheet.
+- Your spreadsheet should include three separate tables: one showing the average packet size and average traffic rate for normal traffic, the other showing the same measurements for traffic captured during an attack with cookies on and another showing the measurements for traffic captured during an attack with SYN cookies off.
 > Look at the `Statistics > I/O` graph and locate a point where the attack started, and then use `Statistics > Packet Lengths` with filters to display the packets received before or after that point. Check the statistics of the displayed packets.
  
 ### 4. Statistical Analysis of Normal and Attack Traffic
