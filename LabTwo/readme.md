@@ -4,9 +4,10 @@ In this lab, we will perform an experimental Denial-of-Service attack and collec
 
 ## Setup
 > [!NOTE]
-   > Please reuse the VM/environment from Lab 1. If you already finished Lab 1 setup, you can skip this setup section. Otherwise, follow: [Lab 1 – Environment Setup](../LabOne/readme.md#setup).
-- Visit [SEED Labs Setup](https://seedsecuritylabs.org/labsetup.html) to download the pre-built VM image (Ubuntu 16.04, 32-bit).
-- VM setup instruction (in Virtualbox): this manual also contains account information (usernames and passwords) https://seedsecuritylabs.org/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf
+> Please reuse the VM/environment from Lab 1. If you already finished Lab 1 setup, you can skip this setup section. Otherwise, follow: [Lab 1 – Environment Setup](../LabOne/readme.md#setup).
+- Download and install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- Refer to the [SEED VM VirtualBox Manual](https://seedsecuritylabs.org/Labs_16.04/Documents/SEEDVM_VirtualBoxManual.pdf) for detailed instructions on setting up the VM in VirtualBox.
+- This manual also contains account information, such as usernames and passwords.
 
 In this lab, you need to have three VMs under the same local network. Once you have configured a VM, you can simply clone that VM for two more times to complete the VM setup. Please refer to Appendix A and B of the VM setup instruction.
 > [!IMPORTANT]
