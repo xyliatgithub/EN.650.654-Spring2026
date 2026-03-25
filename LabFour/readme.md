@@ -39,7 +39,7 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
 
 - **Task 3.a** 
   - Use three VMs A, B and C. (machine A: running the firewall; machine B: outside of the firewall; machine C: outside of the firewall, running telnet server)
-  - Provide a screenshot of each captured traffic on each machine.
+  - Provide a screenshot of captured traffic on each machine.
   - When you telnet from machine A to machine C you should use the following command:
     ```bash
     ssh -L 8000:Machine_C_IP:23 seed@Machine_B_IP
@@ -47,7 +47,7 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
   
 
 - **Task 4**
-  - Before you start this task, make sure you have deleted all rules that you had added in previous tasks.
+  - Before you start this task, make sure you have deleted all the rules that you had added in previous tasks.
   - Save [this file](test.html) in machine A, in the directory ```/var/www/html/test.html```.
   - Now you can access that page from machine B using the browser by typing ```Machine_A_IP/test.html``` on the URL field.
 
