@@ -29,10 +29,9 @@ By completing this lab, you will:
 - Deploy adversarial attacks against spam filters using magic words.
 
 ## Setup
-- Download the LingSpam dataset [messages.csv](https://github.com/xyliatgithub/EN650654-2025/blob/492e90efef45f2d665280b40b44dad48e8626d4c/Adversarial_Attack/messages.csv)
-- Download lab part 1 notebook [SVM Spam Filter and Adversarial Attack](https://github.com/xyliatgithub/EN650654-2025/blob/main/Adversarial_Attack/EN650_654_2025_FinalLab_part1_update_Li_4_18_2025.ipynb).
-  - Due to a recent change the numpy version on colab no longer support the PGD attack. Now you need to finish this part on your own machine, recommend to use anaconda and set a python version 3.9.21, other package requirements are listed in [requirements.txt](https://github.com/xyliatgithub/EN650654-2025/blob/492e90efef45f2d665280b40b44dad48e8626d4c/Adversarial_Attack/requirements.txt)
-- Copy lab part 2 notebook [LLM Spam Filter and Adversarial Attack](https://github.com/xyliatgithub/EN650654-2025/blob/main/Adversarial_Attack/EN650_654_2025_FinalLab_part2_Lab_Version_Li_4_18_2025.ipynb) on your drive. You can run this part at colab.
+- Download the LingSpam dataset [messages.csv](messages.csv)
+- Upload and run lab part 1 - [SVM Spam Filter](EN650_654_2025_FinalLab_part1_update_Li_3_25_2026.ipynb) and part 2 - [LLM Spam Filter](EN650_654_2025_FinalLab_part2_update_Li_3_25_2026.ipynb) in [Google Colab](https://colab.research.google.com/).
+- If you want to run labs locally, needed library dependencies are availible in [this file](requirements.txt). Anaconda python enviroment is recomended.
 
 
 ## Lab Tasks
