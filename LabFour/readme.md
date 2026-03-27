@@ -51,7 +51,8 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
   - Save [this file](test.html) in machine A, in the directory ```/var/www/html/test.html```.
   - Now you can access that page from machine B using the browser by typing ```Machine_A_IP/test.html``` on the URL field.
 
-- In this lab, you need to block a website. Many popular website use multiple IP addresses now. It might be too difficult to block these websites. However, you could just block a website with a static IP address, like ```www.syr.edu```.   
+> [!IMPORTANT]
+> In this lab, you need to block a website. Many popular website use multiple IP addresses now. It might be too difficult to block these websites. However, you could just block a website with a static IP address, like ```www.syr.edu```.   
 
 - Sometimes even if your firewall settings are correct, it may still not block the target website. This may be due to the configuration principle of UFW. The matching of UFW rules is based on the order in which the rules appear, so once a rule is matched, the check stops. To fix this, you could edit ```/etc/ufw/before.rules``` file. Add your rule under ```# End required lines``` in the file. The rule should be look like ```-A ufw-before-input -s <your vm's IP> -j DROP```. Then, run the command
   ```bash
