@@ -38,7 +38,7 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
     Mozilla Firefox -> Settings -> Preferences -> Privacy and Security -> Clear Browsing Data -> Cached web Content -> Clear.
 
 - **Task 3.a** 
-  - Use three VMs A, B and C. (machine A: running the firewall; machine B: outside of the firewall; machine C: outside of the firewall, running telnet server)
+  - Use three VMs A, B, and C. (machine A: running the firewall; machine B: outside of the firewall; machine C: outside of the firewall, running telnet server)
   - Provide a screenshot of captured traffic on each machine.
   - When you telnet from machine A to machine C you should use the following command:
     ```bash
@@ -52,9 +52,9 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
   - Now you can access that page from machine B using the browser by typing ```Machine_A_IP/test.html``` on the URL field.
 
 > [!IMPORTANT]
-> In this lab, you need to block a website. Many popular website use multiple IP addresses now. It might be too difficult to block these websites. However, you could just block a website with a static IP address, like ```www.syr.edu```.   
+> In this lab, you need to block a website. Many popular website use multiple IP addresses now. It might be too difficult to block such websites. However, you could just block a website with a static IP address, like ```www.syr.edu```.   
 
-- Sometimes even if your firewall settings are correct, it may still not block the target website. This may be due to the configuration principle of UFW. The matching of UFW rules is based on the order in which the rules appear, so once a rule is matched, the check stops. To fix this, you could edit ```/etc/ufw/before.rules``` file. Add your rule under ```# End required lines``` in the file. The rule should be look like ```-A ufw-before-input -s <your vm's IP> -j DROP```. Then, run the command
+- Sometimes even if your firewall settings are correct, it may still not block the target website. This may be due to the configuration principle of UFW. The matching of UFW rules is based on the order in which the rules appear. Once a rule is matched, the check stops. To fix this, you could edit ```/etc/ufw/before.rules``` file. Add your rule under ```# End required lines``` in the file. The rule should be look like ```-A ufw-before-input -s <your vm's IP> -j DROP```. Then, run the command
   ```bash
   ufw reload
   ```
