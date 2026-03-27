@@ -29,7 +29,7 @@ Please complete the lab tasks of **2.1, 2.3, and 2.4** in Section 2 (2.2 is not 
 - In this lab you are asked to work with the **UFW** tool instead of working directly with **iptables**. 
 
 - **Task 1, Step 3**: Blocking a specific IP Address: 
-  - To obtain the IP Address of a hostname use the command:
+  - To obtain the IP Address of a hostname, use the command:
     ```host HOST_NAME```. For example:
     ```bash
     host www.example.net
