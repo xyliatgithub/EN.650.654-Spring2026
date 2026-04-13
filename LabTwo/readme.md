@@ -16,12 +16,21 @@ In this lab, you need to have three VMs under the same local network. Once you h
 
 ## Lab Instructions 
 
-1. Please follow the instructions on this [lab manual](TCP_Attacks.pdf) to complete **Task 1: SYN Flooding Attack**. 
-2. Then you need to complete some additional tasks. See the sections below for specific instructions.
+1. Please follow the instructions on this [lab manual](TCP_Attacks.pdf) to complete **Task 1: SYN Flooding Attack**.
+2. Make sure to set SYN backlog size to default value if you changed SYN backlog size
+3. Then you need to complete some additional tasks. See the sections below for specific instructions.
 
 ## Additional Tasks
 
 ### 1. Environment Configuration and Traffic Generation
+- Check if your SYN cookies are on or off using:
+  ```bash
+  sysctl net.ipv4.tcp_syncookies
+  ```
+- Check the SYN backlog size:
+  ```bash
+  net.ipv4.tcp_max_syn_backlog
+  ```
 - Install iperf on the "Server" machine and the "Client" machine using:
   ```bash
   sudo apt-get install iperf
