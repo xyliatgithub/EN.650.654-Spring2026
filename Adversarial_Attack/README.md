@@ -42,7 +42,7 @@ By completing this lab, you will:
 5. Please include the information and results for all the tasks and the answers to the questions in one pdf file for submission.
 
 ## Grading Criteria (50 Points)
-To complete the assignment, upload your completed **2 notebook files**. Make sure to include all required answers and code directly in the notebooks.
+Make sure to include all required answers and code in the submission.
 
 ### Breakdown:
 - **Completeness (35 pts):**
