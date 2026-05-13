@@ -22,54 +22,137 @@ In this lab, you need to have three VMs under the same local network. Once you h
 
 ## Additional Tasks
 
-### 1. Environment Configuration and Traffic Generation
-- Check if your SYN cookies are on or off using:
+> [!NOTE]
+> The I/O graph in Wireshark measures raw packet volume at the network interface. SYN cookies do **not** reduce the number of incoming attack packets — both cookie states will show an identical flood spike if only total traffic is measured. The real effect of SYN cookies is at the **service availability layer**: whether legitimate connections survive during the attack. The steps below are designed to make that difference clearly visible.
+
+---
+
+### 1. Environment Configuration and Baseline Tuning
+
+Check the current SYN cookie state on the **Server** machine:
   ```bash
   sysctl net.ipv4.tcp_syncookies
   ```
-- Check the SYN backlog size:
+
+**Reduce the SYN backlog queue** to a small value so it exhausts quickly and the cookie effect is dramatic. On the **Server** machine run:
   ```bash
-  net.ipv4.tcp_max_syn_backlog
+  sudo sysctl -w net.ipv4.tcp_max_syn_backlog=64
   ```
-- Install iperf on the "Server" machine and the "Client" machine using:
+  Verify the change took effect:
+  ```bash
+  sysctl net.ipv4.tcp_max_syn_backlog
+  ```
+
+Also reduce the SYN-ACK retry count so half-open entries expire faster and queue exhaustion is visible sooner:
+  ```bash
+  sudo sysctl -w net.ipv4.tcp_synack_retries=1
+  ```
+
+Install iperf on the **Server** and **Client** machines:
   ```bash
   sudo apt-get install iperf
   ```
-- We will now collect data of normal traffic and DoS traffic and compare them. First, go to a terminal that corresponds to the "Server" machine type:
-  ```bash
-  sudo tcpdump -i eth1 -Q in -s0 -w capture1.pcap
-  ```
-  replace *eth1* with the correct network interface on your machine. To find the right one, run `ifconfig` and look for the IP address, the interface name will be listed before it. Use that interface name in the command and hit Enter on your keyboard.
-  This command captures the incoming packet traffic and writes it in a file called *capture1.pcap*.
-- Open another terminal on the "Server" machine and press Ctrl+C key. Now in this terminal, Type:
-  ```bash
-  iperf -s
-  ```
-  and hit Enter on your keyboard. When you use `iperf -s` you are running an iperf server. 
-- Next you will run an iperf client on the “Client” machine and generate some regular traffic. Go to a terminal that corresponds to the "Client" machine. Type:
-  ```bash
-  iperf -c Server_IP
-  ```
-  and hit Enter on your keyboard. You need to use the real IP address of the "Server" machine in this command.
-- Wait for at least 5 seconds and do the next step without interrupting running commands.
 
-### 2. SYN Flooding DoS Attack Traffic Generation
-- Open the terminal on the "Attacker" machine. Conduct the same SYN flood attack from the [task 1](TCP_Attacks.pdf) of this SEED lab.
-- After 10 seconds, press Ctrl+C and stop all the commands running on terminal windows of three VMs.
+---
 
-### 3. Traffic Analysis Using Wireshark
-- Use Wireshark to view the *capture1.pcap* file. This file contains both normal and attack traffic data.
-> To access the I/O Graph in Wireshark, go to `Statistics` in the top menu and select `I/O Graph`.
-- This is the graph of the traffic you ran in the previous tasks. 
-- In your report, explain and describe generated I/O graph. Include the graph in your report.
+### 2. Capture A — Baseline: SYN Cookies OFF
+
+This capture will record what happens to legitimate traffic when the server has no protection against SYN flooding.
+
+**Step 1 — Disable SYN cookies on the Server:**
+```bash
+sudo sysctl -w net.ipv4.tcp_syncookies=0
+```
+Confirm:
+```bash
+sysctl net.ipv4.tcp_syncookies
+# Expected output: net.ipv4.tcp_syncookies = 0
+```
+
+**Step 2 — Start packet capture on the Server** (bidirectional — both incoming and outgoing traffic):
+```bash
+sudo tcpdump -i eth1 -s0 -w capture_cookies_off.pcap
+```
+Replace *eth1* with the correct network interface. To find it, run `ifconfig` and look for the interface associated with your server IP address (e.g. `10.0.2.6`).
+
+**Step 3 — Start the iperf server on the Server machine** in a second terminal:
+```bash
+iperf -s -p 5001
+```
+
+**Step 4 — Start the iperf client loop on the Client machine.** This loop will keep attempting new connections throughout the entire experiment, so that service availability is continuously measured:
+```bash
+while true; do iperf -c 10.0.2.6 -p 5001 -t 2; sleep 1; done
+```
+Replace `10.0.2.6` with the real IP address of the Server machine. Wait approximately **8–10 seconds** and confirm that iperf connections are completing successfully before moving to the next step.
+
+**Step 5 — Open a third terminal on the Server machine** and start monitoring the half-open connection queue in real time. Leave this running for the duration of the experiment:
+```bash
+watch -n 1 'netstat -ant | grep SYN_RECV | wc -l'
+```
+
+**Step 6 — Launch the SYN flood from the Attacker machine** without stopping any of the above:
+```bash
+sudo netwox 76 -i 10.0.2.6 -p 5001 -s
+```
+
+**Step 7** — Let the attack run for **20 seconds**, observing the `watch` output on the Server.
+
+**Step 8** — Press Ctrl+C to stop the attack on the Attacker machine. Wait another **10 seconds** while all other terminals keep running, so recovery is captured.
+
+**Step 9** — Press Ctrl+C to stop: the iperf loop on the Client, the iperf server on the Server, the `watch` monitor, and finally the tcpdump capture. The file `capture_cookies_off.pcap` is now complete.
+
+---
+
+### 3. Capture B — Protected: SYN Cookies ON
+
+Repeat the exact same sequence as Section 2 with one change only.
+
+**Step 1 — Enable SYN cookies on the Server:**
+```bash
+sudo sysctl -w net.ipv4.tcp_syncookies=1
+```
+Confirm:
+```bash
+sysctl net.ipv4.tcp_syncookies
+# Expected output: net.ipv4.tcp_syncookies = 1
+```
+
+**Steps 2–9** — Follow all remaining steps from Section 2 exactly, but save the capture to a different file:
+```bash
+sudo tcpdump -i eth1 -s0 -w capture_cookies_on.pcap
+```
+
+Keep all timing consistent with Capture A (same wait periods, same attack duration) so the two captures are directly comparable.
+
+---
+
+### 4. Traffic Analysis Using Wireshark
+
+Open each `.pcap` file separately in Wireshark. To access the I/O Graph, go to `Statistics` in the top menu and select `I/O Graph`.
+
+The default view shows all packets. To reveal the SYN cookie effect, you must add multiple filter rows to the graph. Click the `+` button at the bottom of the I/O Graph window to add each of the following rows:
+
+| Row name | Display filter | What it measures |
+|---|---|---|
+| All packets | *(leave empty)* | Total traffic volume including flood |
+| Legitimate traffic | `tcp.port == 5001` | iperf connections — service survival indicator |
+| SYN flood packets | `tcp.flags.syn == 1 && tcp.flags.ack == 0` | Incoming SYN requests only |
+| Server SYN-ACK responses | `tcp.flags.syn == 1 && tcp.flags.ack == 1` | Whether server is still responding |
+| Retransmissions | `tcp.analysis.retransmission` | Legitimate client retry attempts due to dropped connections |
+
+Set the interval to `1 sec` for fine-grained resolution. Apply the same filter set to both capture files so the graphs are directly comparable.
+
+- In your report, include the I/O graphs from **both** captures with all filter rows visible. Describe what each filter line does during the baseline period, during the attack, and after the attack ends.
 
 **Questions:** Do you see at which time you started the flooding attack? Why is it very distinctive? Did the attack end at some point? What do you think happened at this point?
 
-- Run your attacks and capture I/O graph with the SYN cookie mechanism on and off. Include the graph for these in your report.
-  
+- Compare the `tcp.port == 5001` (legitimate traffic) line between `capture_cookies_off.pcap` and `capture_cookies_on.pcap`. This line is the primary indicator of the SYN cookie effect.
+
 **Questions:** Do you see difference in graphs while attack was run with SYN cookies on? Is it different from the graph when attack was run with SYN cookies off? Why is there difference or why not? Describe your graphs, compare, explain the results.
 
-- Repeat the above steps at least four more times each for the task below. You need to change the name of the data file everytime, e.g., *capture1.pcap*, *capture2.pcap*, ....
+
+- Repeat the above steps at least four more times each for the task below. You need to change the name of the data file everytime, e.g., *capture_cookies_off_1.pcap*, *capture_cookies_on_1.pcap*, ....
 > You do not need to show the I/O graph for the repeated experiements.
 - Use Wireshark to calculate the average packet size and the average traffic rate (measured in packets per second) for both normal and attack traffic with SYN cookies turned on and off. Record these values in an Excel spreadsheet.
 - Your spreadsheet should include three separate tables: one showing the average packet size and average traffic rate for normal traffic, the other showing the same measurements for traffic captured during an attack with cookies on and another showing the measurements for traffic captured during an attack with SYN cookies off.
